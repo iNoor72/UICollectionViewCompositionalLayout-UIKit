@@ -65,7 +65,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
             movieImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
             movieImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
             movieImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
-            movieImage.heightAnchor.constraint(equalTo: movieImage.widthAnchor),
+            movieImage.heightAnchor.constraint(equalToConstant: 180),
             
             movieNameLabel.topAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: 8),
             movieNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),

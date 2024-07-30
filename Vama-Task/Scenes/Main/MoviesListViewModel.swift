@@ -7,15 +7,15 @@
 
 import Foundation
 
-final class MainViewModel {
-    private let mainRepository: MainRepositoryProtocol
+final class MoviesListViewModel {
+    private let mainRepository: MoviesListRepositoryProtocol
     private var movies: [Movie] = []
     var page = 1
     
     var successCompletion: (() -> ())?
     var failureCompletion: (() -> ())?
     
-    init(mainRepository: MainRepositoryProtocol) {
+    init(mainRepository: MoviesListRepositoryProtocol) {
         self.mainRepository = mainRepository
     }
     
@@ -67,6 +67,10 @@ final class MainViewModel {
             rating: movie.rating ?? 0,
             overview: movie.overview ?? "No overview"
         )
+    }
+    
+    func routeToMovie(at index: Int) {
+        
     }
 }
 

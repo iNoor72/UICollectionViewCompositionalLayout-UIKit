@@ -7,16 +7,16 @@
 
 import Foundation
 
-protocol MainRepositoryProtocol {
+protocol MoviesListRepositoryProtocol {
     func fetchPopularMovies(page: Int) async -> Result<MovieResponse, Error>?
     func searchMovies(keyword: String) async -> Result<MovieResponse, Error>?
 }
 
-protocol MainRepositoryDependenciesProtocol {
+protocol MoviesListRepositoryDependenciesProtocol {
     var network: NetworkServiceProtocol { get }
 }
 
-final class MainRepository: MainRepositoryProtocol {
+final class MainRepository: MoviesListRepositoryProtocol {
     private let network: NetworkServiceProtocol
     
     init(network: NetworkServiceProtocol) {
