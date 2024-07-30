@@ -8,5 +8,9 @@
 import Foundation
 
 final class MainViewModel {
+    var mainRepository: MainRepositoryProtocol
     
+    init(mainRepository: MainRepositoryProtocol) {
+        self.mainRepository = mainRepository
+    }
 }

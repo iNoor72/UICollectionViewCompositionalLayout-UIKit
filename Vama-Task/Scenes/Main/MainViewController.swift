@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     
     init(viewModel: MainViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "", bundle: nil)
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -25,4 +25,16 @@ class MainViewController: UIViewController {
     }
 
 
+}
+
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
+    }
+    
+    
 }

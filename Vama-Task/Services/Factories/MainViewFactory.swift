@@ -8,18 +8,27 @@
 import UIKit
 
 protocol MainViewFactoryProtocol: ViewFactoryProtocol {
-    var viewModel: MainViewModel { get }
+    func createView() -> UIViewController
+}
+
+protocol MainViewFactoryDependenciesProtocol {
+    var mainRepository: MainRepositoryProtocol { get }
 }
 
 final class MainViewFactory: MainViewFactoryProtocol {
-    var viewModel: MainViewModel
+    var dependencies: MainViewFactoryDependenciesProtocol
     
-    init(viewModel: MainViewModel) {
-        self.viewModel = viewModel
+    init(dependencies: MainViewFactoryDependenciesProtocol) {
+        self.dependencies = dependencies
     }
     
     func createView() -> UIViewController {
+        let viewModel = MainViewModel(mainRepository: dependencies.mainRepository)
         let viewController = MainViewController(viewModel: viewModel)
         return viewController
     }
+}
+
+struct MainViewFactoryDependencies: MainViewFactoryDependenciesProtocol {
+    var mainRepository: MainRepositoryProtocol
 }
