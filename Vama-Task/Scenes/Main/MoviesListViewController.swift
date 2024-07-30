@@ -52,9 +52,9 @@ class MoviesListViewController: UIViewController {
     }
     
     
-    private let viewModel: MoviesListViewModel!
+    private var viewModel: MoviesListViewModelProtocol!
     
-    init(viewModel: MoviesListViewModel) {
+    init(viewModel: MoviesListViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

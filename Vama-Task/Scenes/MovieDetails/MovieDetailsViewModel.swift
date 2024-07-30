@@ -7,7 +7,15 @@
 
 import Foundation
 
-final class MovieDetailsViewModel {
+protocol MovieDetailsViewModelProtocol {
+    var movie: MovieViewItem? { get }
+    var successCompletion: (() -> ())? { get set }
+    var failureCompletion: (() -> ())? { get set }
+    
+    func fetchMovieDetails() async
+}
+
+final class MovieDetailsViewModel: MovieDetailsViewModelProtocol {
     private let movieDetailsRepository: MovieDetailsRepositoryProtocol
     var movieID: Int = 0
     var movie: MovieViewItem?

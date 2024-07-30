@@ -47,8 +47,8 @@ class MovieDetailsViewController: UIViewController {
         return textView
     }()
     
-    private let viewModel: MovieDetailsViewModel!
-    init(viewModel: MovieDetailsViewModel) {
+    private var viewModel: MovieDetailsViewModelProtocol!
+    init(viewModel: MovieDetailsViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

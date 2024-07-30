@@ -17,7 +17,21 @@ protocol MoviesListViewModelDependenciesProtocol {
     var router: MoviesListRouterProtocol { get }
 }
 
-final class MoviesListViewModel {
+protocol MoviesListViewModelProtocol {
+    var successCompletion: (() -> ())? { get set }
+    var failureCompletion: (() -> ())? { get set }
+    var page: Int { get set }
+    
+    func fetchPopularMovies(page: Int) async
+    func searchMovies(keyword: String) async
+    func refreshData() async
+    func getMoviesCount() -> Int
+    func getMovie(at index: Int) -> MovieViewItem
+    func showError(message: String)
+    func routeToMovie(at index: Int)
+}
+
+final class MoviesListViewModel: MoviesListViewModelProtocol {
     private let dependencies: MoviesListViewModelDependenciesProtocol
     private var movies: [Movie] = []
     var page = 1
