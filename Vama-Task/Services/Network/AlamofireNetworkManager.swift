@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 final class AlamofireNetworkManager: NetworkServiceProtocol {
-    func fetch<U: Endpoint, T: Decodable>(endpoint: U, expectedType: T.Type) async throws -> T {
+    func fetch<U: Endpoint, T: Decodable>(endpoint: U, expectedType: T.Type) async throws -> Result<T, Error> {
         guard let reachability = NetworkReachabilityManager(), reachability.isReachable else {
             throw NetworkErrors.noInternet
         }
@@ -25,7 +25,7 @@ final class AlamofireNetworkManager: NetworkServiceProtocol {
                     continuation.resume(throwing: error)
                     
                 case .success(let data):
-                    continuation.resume(returning: data)
+                    continuation.resume(returning: .success(data))
                 }
             }
         }

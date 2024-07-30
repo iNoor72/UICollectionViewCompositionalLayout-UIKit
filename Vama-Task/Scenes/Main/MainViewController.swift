@@ -22,8 +22,8 @@ class MainViewController: UIViewController {
         return searchBar
     }()
     
-    @objc private func refreshControlTriggered() {
-        viewModel.refreshData()
+    @objc private func refreshControlTriggered() async {
+        await viewModel.refreshData()
     }
     
     private func createLayout() -> UICollectionViewLayout {
@@ -72,6 +72,18 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         layoutViews()
+        viewModel.failureCompletion = {[weak self] in
+            let alert = AlertFactory.createAlert(title: "Error", message: "Failed to fetch data")
+            self?.present(alert, animated: true)
+        }
+        
+        viewModel.successCompletion = {[weak self] in
+            self?.collectionView.reloadData()
+        }
+        
+        Task {
+            await viewModel.fetchPopularMovies(page: 1)
+        }
     }
     
     private func setupViews() {
@@ -81,6 +93,7 @@ class MainViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.register(UINib(nibName: AppConstants.CollectionViewCells.movieCollectionViewCellIdentifier, bundle: nil), forCellWithReuseIdentifier: AppConstants.CollectionViewCells.movieCollectionViewCellIdentifier)
     }
     
     private func layoutViews() {
@@ -99,18 +112,29 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return viewModel.getMoviesCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.CollectionViewCells.movieCollectionViewCellIdentifier, for: indexPath) as? MovieCollectionViewCell else { return UICollectionViewCell() }
+        let movieViewItem = viewModel.getMovie(at: indexPath.row)
+        
+        cell.configure(name: movieViewItem.title, movieImageURL: movieViewItem.posterPath)
+        
+        return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (collectionView.frame.width / 2) - 16
+        return CGSize(width: width, height: 230)
+    }
 }
 
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        guard searchText.count > 2 else { return }
+        Task {
+            await viewModel.searchMovies(keyword: searchText)
+        }
     }
 }

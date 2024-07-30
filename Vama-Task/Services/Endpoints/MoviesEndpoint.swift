@@ -10,6 +10,7 @@ import Alamofire
 
 enum MoviesEndpoint {
     case popularMovies(page: Int)
+    case searchMovies(keyword: String)
     case movieDetails(movieID: Int)
 }
 
@@ -23,6 +24,9 @@ extension MoviesEndpoint: Endpoint {
         switch self {
         case .movieDetails(let movieID):
             return "/\(movieID)"
+            
+        case .searchMovies:
+            return APIConstants.Paths.searchMoviesPath
             
         case .popularMovies:
             return APIConstants.Paths.popularMoviesPath
@@ -39,6 +43,9 @@ extension MoviesEndpoint: Endpoint {
         case .popularMovies(let page):
             parameters["page"] = page
             
+        case .searchMovies(let keyword):
+            parameters["query"] = keyword
+            
         default:
             break
         }
@@ -48,7 +55,7 @@ extension MoviesEndpoint: Endpoint {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .movieDetails, .popularMovies:
+        case .movieDetails, .popularMovies, .searchMovies:
             return .get
         }
     }

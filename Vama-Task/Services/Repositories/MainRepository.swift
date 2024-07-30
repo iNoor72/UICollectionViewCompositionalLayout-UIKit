@@ -8,7 +8,8 @@
 import Foundation
 
 protocol MainRepositoryProtocol {
-    func fetchPopularMovies(page: Int) async -> [Movie]?
+    func fetchPopularMovies(page: Int) async -> Result<[Movie], Error>?
+    func searchMovies(keyword: String) async -> Result<[Movie], Error>?
 }
 
 protocol MainRepositoryDependenciesProtocol {
@@ -22,8 +23,13 @@ final class MainRepository: MainRepositoryProtocol {
         self.network = network
     }
     
-    func fetchPopularMovies(page: Int) async -> [Movie]? {
+    func fetchPopularMovies(page: Int) async -> Result<[Movie], Error>? {
         let endpoint = MoviesEndpoint.popularMovies(page: page)
+        return try? await network.fetch(endpoint: endpoint, expectedType: [Movie].self)
+    }
+    
+    func searchMovies(keyword: String) async -> Result<[Movie], Error>? {
+        let endpoint = MoviesEndpoint.searchMovies(keyword: keyword)
         return try? await network.fetch(endpoint: endpoint, expectedType: [Movie].self)
     }
 }

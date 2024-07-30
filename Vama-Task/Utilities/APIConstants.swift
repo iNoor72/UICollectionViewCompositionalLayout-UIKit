@@ -13,6 +13,7 @@ enum APIConstants {
     static let APIKey = "6c52e7203305d7e7c23f306deaf10418"
     
     enum Paths {
-        static let popularMoviesPath = "/popular"
+        static let popularMoviesPath = "/movie/popular"
+        static let searchMoviesPath = "/search/movie"
     }
 }
