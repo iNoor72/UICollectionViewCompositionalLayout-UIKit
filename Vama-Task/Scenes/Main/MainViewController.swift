@@ -11,9 +11,6 @@ class MainViewController: UIViewController {
     // MARK: - Private properties
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: createLayout())
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshControlTriggered), for: .valueChanged)
-        collectionView.refreshControl = refreshControl
         return collectionView
     }()
     
@@ -21,10 +18,6 @@ class MainViewController: UIViewController {
         let searchBar = UISearchBar(frame: self.view.bounds)
         return searchBar
     }()
-    
-    @objc private func refreshControlTriggered() async {
-        await viewModel.refreshData()
-    }
     
     private func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout {
@@ -73,6 +66,7 @@ class MainViewController: UIViewController {
         title = "Popular Movies"
         setupViews()
         layoutViews()
+        
         viewModel.failureCompletion = {[weak self] in
             DispatchQueue.main.async {
                 let alert = AlertFactory.createAlert(title: "Error", message: "Failed to fetch data")
@@ -98,7 +92,7 @@ class MainViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UINib(nibName: AppConstants.CollectionViewCells.movieCollectionViewCellIdentifier, bundle: nil), forCellWithReuseIdentifier: AppConstants.CollectionViewCells.movieCollectionViewCellIdentifier)
+        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: AppConstants.CollectionViewCells.movieCollectionViewCellIdentifier)
     }
     
     private func layoutViews() {
@@ -128,6 +122,19 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.configure(name: movieViewItem.title, movieImageURL: movieViewItem.posterPath)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == viewModel.getMoviesCount() - 1 {
+            self.viewModel.page += 1
+            Task {
+                await self.viewModel.fetchPopularMovies(page: self.viewModel.page)
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

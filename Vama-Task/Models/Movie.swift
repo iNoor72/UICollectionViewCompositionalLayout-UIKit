@@ -7,6 +7,13 @@
 
 import Foundation
 
+struct MovieResponse: Codable {
+    var results: [Movie]?
+    enum CodingKeys: String, CodingKey {
+        case results
+    }
+}
+
 struct Movie: Codable {
     var id: Int?
     var title: String?

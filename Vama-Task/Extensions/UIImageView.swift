@@ -10,7 +10,7 @@ import Kingfisher
 
 extension UIImageView {
     func setImage(with url: URL?) {
-        kf.setImage(with: url) {[weak self] result in
+        kf.setImage(with: url, options: [.memoryCacheExpiration(.expired), .diskCacheExpiration(.seconds(60))]) {[weak self] result in
             guard let self else { return }
             switch result {
             case .failure(_):

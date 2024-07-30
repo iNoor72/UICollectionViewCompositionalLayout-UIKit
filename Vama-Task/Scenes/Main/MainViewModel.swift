@@ -10,6 +10,7 @@ import Foundation
 final class MainViewModel {
     private let mainRepository: MainRepositoryProtocol
     private var movies: [Movie] = []
+    var page = 1
     
     var successCompletion: (() -> ())?
     var failureCompletion: (() -> ())?
@@ -27,8 +28,8 @@ final class MainViewModel {
         switch result {
         case .failure(_):
             failureCompletion?()
-        case .success(let movies):
-            self.movies = movies
+        case .success(let response):
+            self.movies.append(contentsOf: response.results ?? [])
             successCompletion?()
         }
     }
@@ -42,13 +43,14 @@ final class MainViewModel {
         switch result {
         case .failure(_):
             failureCompletion?()
-        case .success(let movies):
-            self.movies = movies
+        case .success(let response):
+            self.movies.append(contentsOf: response.results ?? [])
             successCompletion?()
         }
     }
     
     func refreshData() async {
+        self.movies = []
         await fetchPopularMovies(page: 1)
     }
     
