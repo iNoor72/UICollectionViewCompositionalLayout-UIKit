@@ -44,7 +44,7 @@ final class MainViewModel {
         case .failure(_):
             failureCompletion?()
         case .success(let response):
-            self.movies.append(contentsOf: response.results ?? [])
+            self.movies = response.results ?? []
             successCompletion?()
         }
     }

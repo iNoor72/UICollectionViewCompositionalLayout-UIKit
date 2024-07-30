@@ -11,11 +11,13 @@ class MainViewController: UIViewController {
     // MARK: - Private properties
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: createLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar(frame: self.view.bounds)
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchBar
     }()
     
@@ -86,6 +88,7 @@ class MainViewController: UIViewController {
     }
     
     private func setupViews() {
+        view.backgroundColor = .white
         view.addSubview(searchBar)
         searchBar.delegate = self
         
@@ -96,7 +99,7 @@ class MainViewController: UIViewController {
     }
     
     private func layoutViews() {
-        NSLayoutConstraint.activate( [
+        NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -145,9 +148,23 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            Task {
+                await viewModel.refreshData()
+            }
+            return
+        }
+        
         guard searchText.count > 2 else { return }
+        
         Task {
             await viewModel.searchMovies(keyword: searchText)
+        }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        Task {
+            await viewModel.refreshData()
         }
     }
 }

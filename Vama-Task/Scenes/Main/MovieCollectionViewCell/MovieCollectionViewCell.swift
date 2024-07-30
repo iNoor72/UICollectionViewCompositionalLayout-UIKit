@@ -51,9 +51,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     
     private func setup() {
-        contentView.addSubview(movieImage)
-        contentView.addSubview(movieNameLabel)
-        contentView.addSubview(accessoryImageView)
+        self.addSubview(movieImage)
+        self.addSubview(movieNameLabel)
+        self.addSubview(accessoryImageView)
         
         accessoryImageView.translatesAutoresizingMaskIntoConstraints = false
         self.layer.borderWidth = 0.7
@@ -62,15 +62,15 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     private func layoutViews() {
         NSLayoutConstraint.activate([
-            movieImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            movieImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            movieImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            movieImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
+            movieImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
+            movieImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
             movieImage.heightAnchor.constraint(equalTo: movieImage.widthAnchor),
             
             movieNameLabel.topAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: 8),
-            movieNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            movieNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            movieNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            movieNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
+            movieNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
+            movieNameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
             
             accessoryImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
             accessoryImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
