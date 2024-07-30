@@ -24,6 +24,7 @@
 		877238042C58FC5E00E3908C /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877238032C58FC5E00E3908C /* MainRepository.swift */; };
 		877238082C58FD0C00E3908C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877238072C58FD0C00E3908C /* Movie.swift */; };
 		8772380A2C5902E400E3908C /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877238092C5902E400E3908C /* NetworkErrors.swift */; };
+		8772380E2C5905E800E3908C /* MoviesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772380D2C5905E800E3908C /* MoviesEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		877238032C58FC5E00E3908C /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
 		877238072C58FD0C00E3908C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		877238092C5902E400E3908C /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
+		8772380D2C5905E800E3908C /* MoviesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		877237CB2C58198D00E3908C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8772380C2C5905DA00E3908C /* Endpoints */,
 				877238022C58FC5600E3908C /* Repositories */,
 				877237CC2C58199100E3908C /* Factories */,
 				877237F42C58FBB200E3908C /* Protocols */,
@@ -202,6 +205,14 @@
 			path = MovieDetails;
 			sourceTree = "<group>";
 		};
+		8772380C2C5905DA00E3908C /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				8772380D2C5905E800E3908C /* MoviesEndpoint.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -286,6 +297,7 @@
 				877237F62C58FBC900E3908C /* Endpoint.swift in Sources */,
 				877238042C58FC5E00E3908C /* MainRepository.swift in Sources */,
 				877237A82C58149400E3908C /* AppDelegate.swift in Sources */,
+				8772380E2C5905E800E3908C /* MoviesEndpoint.swift in Sources */,
 				877237F32C58FBA600E3908C /* NetworkServiceProtocol.swift in Sources */,
 				8772380A2C5902E400E3908C /* NetworkErrors.swift in Sources */,
 				877237FE2C58FBFD00E3908C /* APIConstants.swift in Sources */,
