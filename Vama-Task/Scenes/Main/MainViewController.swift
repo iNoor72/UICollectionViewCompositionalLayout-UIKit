@@ -70,15 +70,20 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Popular Movies"
         setupViews()
         layoutViews()
         viewModel.failureCompletion = {[weak self] in
-            let alert = AlertFactory.createAlert(title: "Error", message: "Failed to fetch data")
-            self?.present(alert, animated: true)
+            DispatchQueue.main.async {
+                let alert = AlertFactory.createAlert(title: "Error", message: "Failed to fetch data")
+                self?.present(alert, animated: true)
+            }
         }
         
         viewModel.successCompletion = {[weak self] in
-            self?.collectionView.reloadData()
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
         }
         
         Task {
@@ -98,9 +103,10 @@ class MainViewController: UIViewController {
     
     private func layoutViews() {
         NSLayoutConstraint.activate( [
-            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            searchBar.heightAnchor.constraint(equalToConstant: 50),
             
             collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 8),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -112,7 +118,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.getMoviesCount()
+        viewModel.getMoviesCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

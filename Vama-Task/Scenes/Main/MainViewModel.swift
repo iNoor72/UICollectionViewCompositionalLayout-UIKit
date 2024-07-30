@@ -25,7 +25,7 @@ final class MainViewModel {
         }
         
         switch result {
-        case .failure(let error):
+        case .failure(_):
             failureCompletion?()
         case .success(let movies):
             self.movies = movies
@@ -40,7 +40,7 @@ final class MainViewModel {
         }
         
         switch result {
-        case .failure(let error):
+        case .failure(_):
             failureCompletion?()
         case .success(let movies):
             self.movies = movies
