@@ -19,9 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let mainFactoryDependencies = MoviesListViewFactoryDependencies(mainRepository: MainRepository(network: AlamofireNetworkManager()))
-        let mainFactory = MoviesListViewFactory(dependencies: mainFactoryDependencies)
-        let viewController = mainFactory.createView()
+        let moviesListFactory = MoviesListViewFactory()
+        let viewController = moviesListFactory.createView()
         let navigationController = UINavigationController(rootViewController: viewController)
         
         

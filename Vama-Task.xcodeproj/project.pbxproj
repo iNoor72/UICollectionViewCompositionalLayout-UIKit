@@ -11,6 +11,7 @@
 		876745A82C597BE900AC66C4 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876745A72C597BE900AC66C4 /* MovieDetailsViewModel.swift */; };
 		876745AA2C597BFA00AC66C4 /* MovieDetailsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876745A92C597BFA00AC66C4 /* MovieDetailsFactory.swift */; };
 		876745AC2C597C1300AC66C4 /* MovieDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876745AB2C597C1300AC66C4 /* MovieDetailsRepository.swift */; };
+		876745AE2C59822400AC66C4 /* MoviesListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876745AD2C59822400AC66C4 /* MoviesListRouter.swift */; };
 		877237A82C58149400E3908C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877237A72C58149400E3908C /* AppDelegate.swift */; };
 		877237AA2C58149400E3908C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877237A92C58149400E3908C /* SceneDelegate.swift */; };
 		877237AC2C58149400E3908C /* MoviesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877237AB2C58149400E3908C /* MoviesListViewController.swift */; };
@@ -25,7 +26,7 @@
 		877237FB2C58FBD900E3908C /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 877237FA2C58FBD900E3908C /* AlamofireDynamic */; };
 		877237FE2C58FBFD00E3908C /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877237FD2C58FBFD00E3908C /* APIConstants.swift */; };
 		877238002C58FC2C00E3908C /* AlamofireNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877237FF2C58FC2C00E3908C /* AlamofireNetworkManager.swift */; };
-		877238042C58FC5E00E3908C /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877238032C58FC5E00E3908C /* MainRepository.swift */; };
+		877238042C58FC5E00E3908C /* MoviesListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877238032C58FC5E00E3908C /* MoviesListRepository.swift */; };
 		877238082C58FD0C00E3908C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877238072C58FD0C00E3908C /* Movie.swift */; };
 		8772380A2C5902E400E3908C /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877238092C5902E400E3908C /* NetworkErrors.swift */; };
 		8772380E2C5905E800E3908C /* MoviesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772380D2C5905E800E3908C /* MoviesEndpoint.swift */; };
@@ -41,6 +42,7 @@
 		876745A72C597BE900AC66C4 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 		876745A92C597BFA00AC66C4 /* MovieDetailsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsFactory.swift; sourceTree = "<group>"; };
 		876745AB2C597C1300AC66C4 /* MovieDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRepository.swift; sourceTree = "<group>"; };
+		876745AD2C59822400AC66C4 /* MoviesListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListRouter.swift; sourceTree = "<group>"; };
 		877237A42C58149400E3908C /* Vama-Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vama-Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		877237A72C58149400E3908C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		877237A92C58149400E3908C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +57,7 @@
 		877237F52C58FBC900E3908C /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		877237FD2C58FBFD00E3908C /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		877237FF2C58FC2C00E3908C /* AlamofireNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkManager.swift; sourceTree = "<group>"; };
-		877238032C58FC5E00E3908C /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
+		877238032C58FC5E00E3908C /* MoviesListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListRepository.swift; sourceTree = "<group>"; };
 		877238072C58FD0C00E3908C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		877238092C5902E400E3908C /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 		8772380D2C5905E800E3908C /* MoviesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesEndpoint.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				877238122C592DB100E3908C /* MovieCollectionViewCell */,
 				877237AB2C58149400E3908C /* MoviesListViewController.swift */,
 				877237D42C5819D700E3908C /* MoviesListViewModel.swift */,
+				876745AD2C59822400AC66C4 /* MoviesListRouter.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -208,7 +211,7 @@
 		877238022C58FC5600E3908C /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				877238032C58FC5E00E3908C /* MainRepository.swift */,
+				877238032C58FC5E00E3908C /* MoviesListRepository.swift */,
 				876745AB2C597C1300AC66C4 /* MovieDetailsRepository.swift */,
 			);
 			path = Repositories;
@@ -340,9 +343,10 @@
 				876745A62C597BD000AC66C4 /* MovieDetailsViewController.swift in Sources */,
 				877238002C58FC2C00E3908C /* AlamofireNetworkManager.swift in Sources */,
 				877238082C58FD0C00E3908C /* Movie.swift in Sources */,
+				876745AE2C59822400AC66C4 /* MoviesListRouter.swift in Sources */,
 				877237AC2C58149400E3908C /* MoviesListViewController.swift in Sources */,
 				877237F62C58FBC900E3908C /* Endpoint.swift in Sources */,
-				877238042C58FC5E00E3908C /* MainRepository.swift in Sources */,
+				877238042C58FC5E00E3908C /* MoviesListRepository.swift in Sources */,
 				876745AC2C597C1300AC66C4 /* MovieDetailsRepository.swift in Sources */,
 				877237A82C58149400E3908C /* AppDelegate.swift in Sources */,
 				8772380E2C5905E800E3908C /* MoviesEndpoint.swift in Sources */,

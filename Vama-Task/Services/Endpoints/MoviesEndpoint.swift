@@ -23,7 +23,7 @@ extension MoviesEndpoint: Endpoint {
     var path: String {
         switch self {
         case .movieDetails(let movieID):
-            return "/\(movieID)"
+            return APIConstants.Paths.moviesDetailsPath + "/\(movieID)"
             
         case .searchMovies:
             return APIConstants.Paths.searchMoviesPath

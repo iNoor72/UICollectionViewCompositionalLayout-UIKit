@@ -7,20 +7,30 @@
 
 import Foundation
 
+struct MoviesListViewModelDependencies: MoviesListViewModelDependenciesProtocol {
+    var mainRepository: MoviesListRepositoryProtocol
+    var router: MoviesListRouterProtocol
+}
+
+protocol MoviesListViewModelDependenciesProtocol {
+    var mainRepository: MoviesListRepositoryProtocol { get }
+    var router: MoviesListRouterProtocol { get }
+}
+
 final class MoviesListViewModel {
-    private let mainRepository: MoviesListRepositoryProtocol
+    private let dependencies: MoviesListViewModelDependenciesProtocol
     private var movies: [Movie] = []
     var page = 1
     
     var successCompletion: (() -> ())?
     var failureCompletion: (() -> ())?
     
-    init(mainRepository: MoviesListRepositoryProtocol) {
-        self.mainRepository = mainRepository
+    init(dependencies: MoviesListViewModelDependenciesProtocol) {
+        self.dependencies = dependencies
     }
     
     func fetchPopularMovies(page: Int) async {
-        guard let result = await mainRepository.fetchPopularMovies(page: page) else {
+        guard let result = await dependencies.mainRepository.fetchPopularMovies(page: page) else {
             failureCompletion?()
             return
         }
@@ -35,7 +45,7 @@ final class MoviesListViewModel {
     }
     
     func searchMovies(keyword: String) async {
-        guard let result = await mainRepository.searchMovies(keyword: keyword) else {
+        guard let result = await dependencies.mainRepository.searchMovies(keyword: keyword) else {
             failureCompletion?()
             return
         }
@@ -61,6 +71,8 @@ final class MoviesListViewModel {
     func getMovie(at index: Int) -> MovieViewItem {
         let movie = movies[index]
         return MovieViewItem(
+            id: movie.id ?? 0,
+            uuid: movie.uuid,
             title: movie.title ?? "No Title",
             posterPath: movie.posterPath ?? "",
             releaseDate: movie.releaseDate ?? "",
@@ -69,12 +81,18 @@ final class MoviesListViewModel {
         )
     }
     
+    func showError(message: String) {
+        dependencies.router.showError(message: message)
+    }
+    
     func routeToMovie(at index: Int) {
-        
+        dependencies.router.navigateToMovieDetails(movieID: movies[index].id ?? 0)
     }
 }
 
 struct MovieViewItem {
+    let id: Int
+    let uuid: UUID
     let title: String
     let posterPath: String
     let releaseDate: String

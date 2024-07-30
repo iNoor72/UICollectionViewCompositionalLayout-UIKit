@@ -11,24 +11,12 @@ protocol MovieDetailsFactoryProtocol: ViewFactoryProtocol {
     func createView() -> UIViewController
 }
 
-protocol MovieDetailsFactoryDependenciesProtocol {
-    var movieDetailsRepository: MovieDetailsRepositoryProtocol { get }
-}
-
-final class MovieDetailsFactoryFactory: MovieDetailsFactoryProtocol {
-    var dependencies: MovieDetailsFactoryDependenciesProtocol
-    
-    init(dependencies: MovieDetailsFactoryDependenciesProtocol) {
-        self.dependencies = dependencies
-    }
-    
+final class MovieDetailsFactory: MovieDetailsFactoryProtocol {
     func createView() -> UIViewController {
-        let viewModel = MovieDetailsViewModel(movieDetailsRepository: dependencies.movieDetailsRepository)
+        let repository = MovieDetailsRepository(network: AlamofireNetworkManager())
+        let viewModel = MovieDetailsViewModel(movieDetailsRepository: repository)
+        viewModel.movieID = UserDefaults.standard.integer(forKey: "movieID")
         let viewController = MovieDetailsViewController(viewModel: viewModel)
         return viewController
     }
-}
-
-struct MovieDetailsFactoryFactoryDependencies: MovieDetailsFactoryDependenciesProtocol {
-    var movieDetailsRepository: MovieDetailsRepositoryProtocol
 }

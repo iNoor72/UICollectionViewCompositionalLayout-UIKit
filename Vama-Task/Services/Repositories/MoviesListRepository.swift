@@ -16,7 +16,7 @@ protocol MoviesListRepositoryDependenciesProtocol {
     var network: NetworkServiceProtocol { get }
 }
 
-final class MainRepository: MoviesListRepositoryProtocol {
+final class MoviesListRepository: MoviesListRepositoryProtocol {
     private let network: NetworkServiceProtocol
     
     init(network: NetworkServiceProtocol) {

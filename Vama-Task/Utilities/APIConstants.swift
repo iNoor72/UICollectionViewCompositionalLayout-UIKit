@@ -15,5 +15,6 @@ enum APIConstants {
     enum Paths {
         static let popularMoviesPath = "/movie/popular"
         static let searchMoviesPath = "/search/movie"
+        static let moviesDetailsPath = "/movie"
     }
 }

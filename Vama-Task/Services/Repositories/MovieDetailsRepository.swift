@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MovieDetailsRepositoryProtocol {
-    func fetchMovieDetails(movieID: Int) async -> Result<MovieResponse, Error>?
+    func fetchMovieDetails(movieID: Int) async -> Result<Movie, Error>?
 }
 
 protocol MovieDetailsRepositoryDependenciesProtocol {
@@ -22,8 +22,8 @@ final class MovieDetailsRepository: MovieDetailsRepositoryProtocol {
         self.network = network
     }
     
-    func fetchMovieDetails(movieID: Int) async -> Result<MovieResponse, Error>? {
+    func fetchMovieDetails(movieID: Int) async -> Result<Movie, Error>? {
         let endpoint = MoviesEndpoint.movieDetails(movieID: movieID)
-        return try? await network.fetch(endpoint: endpoint, expectedType: MovieResponse.self)
+        return try? await network.fetch(endpoint: endpoint, expectedType: Movie.self)
     }
 }
