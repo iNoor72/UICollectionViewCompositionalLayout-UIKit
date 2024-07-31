@@ -40,7 +40,7 @@ class CompositionalMoviesListViewController: UIViewController {
             
             switch section {
             case .content:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(self.collectionView.frame.height / 3))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
@@ -69,7 +69,6 @@ class CompositionalMoviesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Popular Movies"
         setupViews()
         layoutViews()
         
