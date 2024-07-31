@@ -128,4 +128,13 @@ class MovieCollectionViewCell: UICollectionViewCell {
         self.movieRatingLabel.text = String(Int(rating))
         self.movieReleaseDateLabel.text = releaseDate
     }
+    
+    func configure(item: MovieViewItem) {
+        guard let imageURL = URL(string: (APIConstants.imagesBaseURL + item.posterPath)) else { return }
+        
+        self.movieImage.setImage(with: imageURL)
+        self.movieNameLabel.text = item.title
+        self.movieRatingLabel.text = String(Int(item.rating))
+        self.movieReleaseDateLabel.text = item.releaseDate
+    }
 }

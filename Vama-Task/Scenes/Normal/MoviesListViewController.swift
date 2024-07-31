@@ -95,7 +95,7 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TEST", for: indexPath) as? TestCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.CollectionViewCells.movieCollectionViewCellIdentifier, for: indexPath) as? MovieCollectionViewCell else { return UICollectionViewCell() }
         let movieViewItem = viewModel.getMovie(at: indexPath.row)
         
         cell.configure(name: movieViewItem.title, movieImageURL: movieViewItem.posterPath, rating: movieViewItem.rating, releaseDate: movieViewItem.releaseDate)
