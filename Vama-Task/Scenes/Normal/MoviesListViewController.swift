@@ -65,6 +65,13 @@ class MoviesListViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: AppConstants.CollectionViewCells.movieCollectionViewCellIdentifier)
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = 16
+        flowLayout.minimumInteritemSpacing = 16
+        flowLayout.itemSize = CGSize(width: collectionView.frame.width - 16, height: collectionView.frame.height / 4)
+        collectionView.collectionViewLayout = flowLayout
     }
     
     private func layoutViews() {
@@ -88,10 +95,10 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppConstants.CollectionViewCells.movieCollectionViewCellIdentifier, for: indexPath) as? MovieCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TEST", for: indexPath) as? TestCell else { return UICollectionViewCell() }
         let movieViewItem = viewModel.getMovie(at: indexPath.row)
         
-        cell.configure(name: movieViewItem.title, movieImageURL: movieViewItem.posterPath)
+        cell.configure(name: movieViewItem.title, movieImageURL: movieViewItem.posterPath, rating: movieViewItem.rating, releaseDate: movieViewItem.releaseDate)
         
         return cell
     }
@@ -107,15 +114,6 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
                 await self.viewModel.fetchPopularMovies(page: self.viewModel.page)
             }
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width / 2) - 16
-        return CGSize(width: width, height: 230)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
 }
 

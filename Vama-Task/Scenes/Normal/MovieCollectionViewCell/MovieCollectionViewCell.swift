@@ -21,13 +21,38 @@ class MovieCollectionViewCell: UICollectionViewCell {
     let movieNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .black
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let movieImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    let movieReleaseDateLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let movieRatingLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let starImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "star.fill")
+        imageView.tintColor = .yellow
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -54,6 +79,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
         self.addSubview(movieImage)
         self.addSubview(movieNameLabel)
         self.addSubview(accessoryImageView)
+        self.addSubview(movieRatingLabel)
+        self.addSubview(movieReleaseDateLabel)
+        self.addSubview(starImage)
         
         accessoryImageView.translatesAutoresizingMaskIntoConstraints = false
         self.layer.borderWidth = 0.7
@@ -62,15 +90,28 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     private func layoutViews() {
         NSLayoutConstraint.activate([
-            movieImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-            movieImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
-            movieImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
-            movieImage.heightAnchor.constraint(equalToConstant: 180),
+            movieImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            movieImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            movieImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            movieImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             
-            movieNameLabel.topAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: 8),
-            movieNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
+            starImage.leadingAnchor.constraint(equalTo: movieImage.leadingAnchor, constant: 0),
+            starImage.bottomAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: -8),
+            starImage.widthAnchor.constraint(equalToConstant: 20),
+            starImage.heightAnchor.constraint(equalToConstant: 20),
+            
+            movieRatingLabel.leadingAnchor.constraint(equalTo: starImage.trailingAnchor, constant: 8),
+            movieRatingLabel.trailingAnchor.constraint(equalTo: movieImage.trailingAnchor, constant: 8),
+            movieRatingLabel.centerYAnchor.constraint(equalTo: starImage.centerYAnchor),
+            
+            movieReleaseDateLabel.bottomAnchor.constraint(equalTo: starImage.topAnchor, constant: -16),
+            movieReleaseDateLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 8),
+            movieReleaseDateLabel.leadingAnchor.constraint(equalTo: movieImage.leadingAnchor, constant: 0),
+            
+            
+            movieNameLabel.leadingAnchor.constraint(equalTo: movieImage.leadingAnchor, constant: 0),
             movieNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
-            movieNameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
+            movieNameLabel.bottomAnchor.constraint(equalTo: movieReleaseDateLabel.topAnchor, constant: -8),
             
             accessoryImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
             accessoryImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
@@ -79,17 +120,12 @@ class MovieCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func configure(name: String, movieImageURL: String) {
+    func configure(name: String, movieImageURL: String, rating: Double, releaseDate: String) {
         guard let imageURL = URL(string: (APIConstants.imagesBaseURL + movieImageURL)) else { return }
         
         self.movieImage.setImage(with: imageURL)
         self.movieNameLabel.text = name
-    }
-    
-    func configure(item: MovieViewItem) {
-        guard let imageURL = URL(string: (APIConstants.imagesBaseURL + item.posterPath)) else { return }
-        
-        self.movieImage.setImage(with: imageURL)
-        self.movieNameLabel.text = item.title
+        self.movieRatingLabel.text = String(Int(rating))
+        self.movieReleaseDateLabel.text = releaseDate
     }
 }
