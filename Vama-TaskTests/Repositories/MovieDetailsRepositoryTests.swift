@@ -21,7 +21,7 @@ final class MovieDetailsRepositoryTests: XCTestCase {
         super.tearDown()
     }
     
-    func test_fetchMovieDetails() async {
+    func test_fetch_movie_details() async {
         guard let result = await sut.fetchMovieDetails(movieID: 1) else {
             XCTFail()
             return
@@ -36,7 +36,7 @@ final class MovieDetailsRepositoryTests: XCTestCase {
         }
     }
     
-    func test_fetchMovieDetails_failure() async {
+    func test_fetch_movie_details_failure() async {
         (sut as? MockMovieDetailsRepository)?.shouldFail = true
         
         guard let result = await sut.fetchMovieDetails(movieID: 1) else {

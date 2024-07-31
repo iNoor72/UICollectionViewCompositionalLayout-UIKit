@@ -21,7 +21,7 @@ final class MoviesListRepositoryTests: XCTestCase {
         super.tearDown()
     }
     
-    func test_fetchMovies() async {
+    func test_fetch_movies() async {
         guard let result = await sut.fetchPopularMovies(page: 1) else {
             XCTFail()
             return
@@ -36,7 +36,7 @@ final class MoviesListRepositoryTests: XCTestCase {
         }
     }
     
-    func test_searchMovies() async {
+    func test_search_movies() async {
         guard let result = await sut.searchMovies(keyword: "test") else {
             XCTFail()
             return
@@ -51,7 +51,7 @@ final class MoviesListRepositoryTests: XCTestCase {
         }
     }
     
-    func test_fetchMovies_failure() async {
+    func test_fetch_movies_failure() async {
         (sut as? MockMoviesListRepository)?.shouldFail = true
         guard let result = await sut.fetchPopularMovies(page: 1) else {
             XCTFail()
@@ -67,7 +67,7 @@ final class MoviesListRepositoryTests: XCTestCase {
         }
     }
     
-    func test_searchMovies_failure() async {
+    func test_search_movies_failure() async {
         (sut as? MockMoviesListRepository)?.shouldFail = true
         guard let result = await sut.searchMovies(keyword: "test") else {
             XCTFail()
