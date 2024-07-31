@@ -85,4 +85,11 @@ class MovieCollectionViewCell: UICollectionViewCell {
         self.movieImage.setImage(with: imageURL)
         self.movieNameLabel.text = name
     }
+    
+    func configure(item: MovieViewItem) {
+        guard let imageURL = URL(string: (APIConstants.imagesBaseURL + item.posterPath)) else { return }
+        
+        self.movieImage.setImage(with: imageURL)
+        self.movieNameLabel.text = item.title
+    }
 }

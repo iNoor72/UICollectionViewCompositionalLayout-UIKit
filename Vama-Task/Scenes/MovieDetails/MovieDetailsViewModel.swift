@@ -36,7 +36,7 @@ final class MovieDetailsViewModel: MovieDetailsViewModelProtocol {
         case .failure(_):
             failureCompletion?()
         case .success(let movie):
-            self.movie = MovieViewItem(id: movie.id ?? 0, uuid: UUID(), title: movie.title ?? "", posterPath: movie.posterPath ?? "", releaseDate: movie.releaseDate ?? "", rating: movie.rating ?? 0, overview: movie.overview ?? "")
+            self.movie = MovieViewItem(id: movie.id ?? 0, uuid: movie.uuid, title: movie.title ?? "", posterPath: movie.posterPath ?? "", releaseDate: movie.releaseDate ?? "", rating: movie.rating ?? 0, overview: movie.overview ?? "")
             successCompletion?()
         }
     }

@@ -104,7 +104,7 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     }
 }
 
-struct MovieViewItem {
+struct MovieViewItem: Hashable {
     let id: Int
     let uuid: UUID
     let title: String
@@ -112,4 +112,12 @@ struct MovieViewItem {
     let releaseDate: String
     let rating: Double
     let overview: String
+    
+    static func ==(lhs: MovieViewItem, rhs: MovieViewItem) -> Bool {
+        return lhs.uuid == rhs.uuid
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(uuid)
+    }
 }

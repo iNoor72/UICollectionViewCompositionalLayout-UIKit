@@ -10,7 +10,7 @@ import UIKit
 class MoviesListViewController: UIViewController {
     // MARK: - Private properties
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: createLayout())
+        let collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -20,36 +20,6 @@ class MoviesListViewController: UIViewController {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchBar
     }()
-    
-    private func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout {
-            (sectionIndex: Int,
-            layoutEnvironment: NSCollectionLayoutEnvironment
-            ) -> NSCollectionLayoutSection? in
-            
-            let fraction: CGFloat = 1 / 2
-            let inset: CGFloat = 6
-            let groupInset: CGFloat = 8
-            
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fraction),
-                                                  heightDimension: .fractionalHeight(1))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset,
-                                                         bottom: inset, trailing: inset)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                   heightDimension: .fractionalWidth(fraction))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: groupInset,
-                                                            bottom: inset, trailing: groupInset)
-            
-            return section
-        }
-        
-        return layout
-    }
     
     
     private var viewModel: MoviesListViewModelProtocol!
@@ -65,7 +35,6 @@ class MoviesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Popular Movies"
         setupViews()
         layoutViews()
         
@@ -143,6 +112,10 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width / 2) - 16
         return CGSize(width: width, height: 230)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
 }
 

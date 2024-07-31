@@ -22,6 +22,7 @@ struct Movie: Codable, Hashable {
     var posterPath: String?
     var rating: Double?
     var releaseDate: String?
+    let uuid = UUID()
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -30,14 +31,5 @@ struct Movie: Codable, Hashable {
         case posterPath = "backdrop_path"
         case rating = "vote_average"
         case releaseDate = "release_date"
-    }
-    
-    let uuid = UUID()
-    static func ==(lhs: Movie, rhs: Movie) -> Bool {
-        return lhs.uuid == rhs.uuid
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(uuid)
     }
 }
