@@ -132,10 +132,4 @@ extension MoviesListViewController: UISearchBarDelegate {
             await viewModel.searchMovies(keyword: searchText)
         }
     }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        Task {
-            await viewModel.refreshData()
-        }
-    }
 }
