@@ -85,7 +85,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
         self.addSubview(movieReleaseDateLabel)
         self.addSubview(starImage)
         
-        accessoryImageView.translatesAutoresizingMaskIntoConstraints = false
         self.layer.borderWidth = 0.7
         self.layer.cornerRadius = 8.0
     }
