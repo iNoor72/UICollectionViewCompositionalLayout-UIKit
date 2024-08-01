@@ -29,6 +29,8 @@ class MovieCollectionViewCell: UICollectionViewCell {
     private let movieImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -95,7 +97,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
             movieImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             movieImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             
-            starImage.leadingAnchor.constraint(equalTo: movieImage.leadingAnchor, constant: 0),
+            starImage.leadingAnchor.constraint(equalTo: movieImage.leadingAnchor, constant: 8),
             starImage.bottomAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: -8),
             starImage.widthAnchor.constraint(equalToConstant: 20),
             starImage.heightAnchor.constraint(equalToConstant: 20),
@@ -106,10 +108,10 @@ class MovieCollectionViewCell: UICollectionViewCell {
             
             movieReleaseDateLabel.bottomAnchor.constraint(equalTo: starImage.topAnchor, constant: -16),
             movieReleaseDateLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 8),
-            movieReleaseDateLabel.leadingAnchor.constraint(equalTo: movieImage.leadingAnchor, constant: 0),
+            movieReleaseDateLabel.leadingAnchor.constraint(equalTo: movieImage.leadingAnchor, constant: 8),
             
             
-            movieNameLabel.leadingAnchor.constraint(equalTo: movieImage.leadingAnchor, constant: 0),
+            movieNameLabel.leadingAnchor.constraint(equalTo: movieImage.leadingAnchor, constant: 8),
             movieNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
             movieNameLabel.bottomAnchor.constraint(equalTo: movieReleaseDateLabel.topAnchor, constant: -8),
             
