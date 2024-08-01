@@ -30,8 +30,8 @@ To run the project, you simply open the project and wait for packages to be down
 ### Bonus features:
 - Pagination for loading movies.
 - Used DTO for providing data from Repository to ViewModel to View.
-- Mocking for the network and database layers.
-- Unit testing for the all layers (Network, Factories, Repositories, and ViewModels) using Mocks.
+- Mocking for the network layer and other components.
+- Unit testing for the all layers (Network, Factories, Repositories, and ViewModels) using the Mocks.
 
 ## Packages
 - Alamofire: Used for all of the heavy work of networking in the app.
