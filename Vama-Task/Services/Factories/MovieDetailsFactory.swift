@@ -15,7 +15,7 @@ final class MovieDetailsFactory: MovieDetailsFactoryProtocol {
     func createView() -> UIViewController {
         let repository = MovieDetailsRepository(network: AlamofireNetworkManager())
         let viewModel = MovieDetailsViewModel(movieDetailsRepository: repository)
-        viewModel.movieID = UserDefaults.standard.integer(forKey: "movieID")
+        viewModel.movieID = UserDefaults.standard.integer(forKey: UserDefaults.Keys.movieID)
         let viewController = MovieDetailsViewController(viewModel: viewModel)
         return viewController
     }

@@ -87,11 +87,11 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
         return MovieViewItem(
             id: movie.id ?? 0,
             uuid: movie.uuid,
-            title: movie.title ?? "No Title",
+            title: movie.title ?? AppStrings.noTitleStrign,
             posterPath: movie.posterPath ?? "",
             releaseDate: movie.releaseDate ?? "",
             rating: movie.rating ?? 0,
-            overview: movie.overview ?? "No overview"
+            overview: movie.overview ?? AppStrings.noOverviewStrign
         )
     }
     

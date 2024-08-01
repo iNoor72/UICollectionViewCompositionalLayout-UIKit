@@ -18,14 +18,14 @@ final class MoviesListRouter: MoviesListRouterProtocol {
     weak var viewController: UIViewController?
     
     func navigateToMovieDetails(movieID: Int) {
-        UserDefaults.standard.setValue(movieID, forKey: "movieID")
+        UserDefaults.standard.setValue(movieID, forKey: UserDefaults.Keys.movieID)
         let movieDetailsFactory = MovieDetailsFactory()
         let movieDetailsViewController = movieDetailsFactory.createView()
         viewController?.navigationController?.pushViewController(movieDetailsViewController, animated: true)
     }
     
     func showError(message: String) {
-        let alert = AlertFactory.createAlert(title: "Error", message: message)
+        let alert = AlertFactory.createAlert(title: AppStrings.errorString, message: message)
         viewController?.present(alert, animated: true)
     }
 }

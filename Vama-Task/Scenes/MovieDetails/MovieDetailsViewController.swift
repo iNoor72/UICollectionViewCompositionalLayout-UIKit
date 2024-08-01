@@ -75,7 +75,7 @@ class MovieDetailsViewController: UIViewController {
         
         viewModel.failureCompletion = {[weak self] in
             DispatchQueue.main.async {
-                let alert = AlertFactory.createAlert(title: "Error", message: "Failed to fetch data")
+                let alert = AlertFactory.createAlert(title: AppStrings.errorString, message: "Failed to fetch data")
                 self?.present(alert, animated: true)
             }
         }

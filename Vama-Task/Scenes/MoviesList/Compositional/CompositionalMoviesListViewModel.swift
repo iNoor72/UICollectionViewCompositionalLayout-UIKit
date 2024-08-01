@@ -75,11 +75,11 @@ final class CompositionalMoviesListViewModel: CompositionalMoviesListViewModelPr
         guard let movie = movies[.content]?[safe: index] as? MovieViewItem else { return MovieViewItem(
             id: 0,
             uuid: UUID(),
-            title: "No Title",
+            title: AppStrings.noTitleStrign,
             posterPath: "",
             releaseDate: "",
             rating: 0,
-            overview: "No overview"
+            overview: AppStrings.noOverviewStrign
         ) }
         return movie
     }

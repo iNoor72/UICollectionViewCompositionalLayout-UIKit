@@ -15,13 +15,6 @@ class MainTabBarController: UITabBarController {
     }
 
     private func setupViewControllers() {
-        let moviesListFactory = MoviesListViewFactory()
-        let moviesListViewController = moviesListFactory.createView()
-        let moviesListNavigationController = UINavigationController(rootViewController: moviesListViewController)
-        moviesListViewController.tabBarItem.title = "Normal Layout"
-        moviesListViewController.tabBarItem.image = UIImage(systemName: "list.bullet.circle.fill")
-        moviesListViewController.title = "Normal Layout"
-        
         let compositionalMoviesListFactory = CompositionalMoviesListFactory()
         let compositionalMoviesListViewController = compositionalMoviesListFactory.createView()
         let compositionalMoviesListNavigationController = UINavigationController(rootViewController: compositionalMoviesListViewController)
@@ -29,6 +22,13 @@ class MainTabBarController: UITabBarController {
         compositionalMoviesListViewController.tabBarItem.image = UIImage(systemName: "rectangle.3.group.fill")
         compositionalMoviesListViewController.title = "Compositional Layout"
         
-        self.viewControllers = [moviesListNavigationController, compositionalMoviesListNavigationController]
+        let moviesListFactory = MoviesListViewFactory()
+        let moviesListViewController = moviesListFactory.createView()
+        let moviesListNavigationController = UINavigationController(rootViewController: moviesListViewController)
+        moviesListViewController.tabBarItem.title = "Normal Layout"
+        moviesListViewController.tabBarItem.image = UIImage(systemName: "list.bullet.circle.fill")
+        moviesListViewController.title = "Normal Layout"
+        
+        self.viewControllers = [compositionalMoviesListNavigationController, moviesListNavigationController]
     }
 }
