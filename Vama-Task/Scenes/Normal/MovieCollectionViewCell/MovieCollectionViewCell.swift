@@ -8,8 +8,8 @@
 import UIKit
 import Kingfisher
 
-class MovieCollectionViewCell: UICollectionViewCell {
-    let accessoryImageView: UIImageView = {
+class MovieCollectionViewCell: UICollectionViewCell {    
+    private let accessoryImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "chevron.right") //Disclosure Indicator like in UITableViewCell
         imageView.tintColor = .gray
@@ -18,7 +18,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    let movieNameLabel: UILabel = {
+    private let movieNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.textColor = .white
@@ -26,14 +26,14 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let movieImage: UIImageView = {
+    private let movieImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    let movieReleaseDateLabel: UILabel = {
+    private let movieReleaseDateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = .white
@@ -41,7 +41,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let movieRatingLabel: UILabel = {
+    private let movieRatingLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textColor = .white
@@ -49,7 +49,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let starImage: UIImageView = {
+    private let starImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "star.fill")
         imageView.tintColor = .yellow
