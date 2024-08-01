@@ -16,7 +16,7 @@ To run the project, you simply open the project and wait for packages to be down
 - Swift and Programmatic views using UIKit for the design.
 - UICollectionView with UICollectionViewCompositionalLayout.
 - SPM for handling packages.
-- Used MVVM UI Design Pattern applying Clean Architecture principles (Repository, Layers, Factories) for scalability and testablity. For more info, <a href="https://www.google.com](https://inoor.hashnode.dev/clean-mvp-with-swift">click here</a> to view my article about applying Clean Architecrture principles to any UI Design Pattern.
+- Used MVVM UI Design Pattern applying Clean Architecture principles (Repository, Layers, Factory Method) for scalability and testablity. For more info, <a href="https://www.google.com](https://inoor.hashnode.dev/clean-mvp-with-swift">click here</a> to view my article about applying Clean Architecrture principles to any UI Design Pattern.
 
 ## Main Features
 - List the popular movies for the user to browse them.
