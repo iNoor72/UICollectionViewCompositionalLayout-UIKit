@@ -1,8 +1,8 @@
-# 🍏 Vama-Task
-Vama-Task is my implementation for an iOS app to show movies from TMDB website.
+# 🍏 UICollectionViewCompositionalLayout-UIKit
+UICollectionViewCompositionalLayout-UIKit is my implementation for an iOS app to show movies from TMDB website using UICollectionViewCompositionalLayout.
 
 ## Description
-Vama-Task is an iOS app to fetch and present popular movies and their details from TMDB website.
+UICollectionViewCompositionalLayout-UIKit is an iOS app to fetch and present popular movies and their details from TMDB website.
 
 ## Getting started
 To run the project, you simply open the project and wait for packages to be downloaded
